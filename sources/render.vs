@@ -1,9 +1,9 @@
 #version 430
 
 // Input
-in vec3 vPosition;
-in vec3 vNormal;
-in vec4 vColor;
+layout(location = 0) in vec3 vPosition;
+layout(location = 1) in vec3 vNormal;
+layout(location = 2) in vec4 vColor;
 
 // Output
 out vec3 fPosition;

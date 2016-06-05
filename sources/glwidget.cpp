@@ -7,6 +7,10 @@
 
 #include "common.h"
 
+static const int SHADER_POSITION_LOCATION = 0;
+static const int SHADER_NORMAL_LOCATION   = 1;
+static const int SHADER_COLOR_LOCATION    = 2;
+
 GLWidget::GLWidget(QWidget* parent)
     : QOpenGLWidget{ parent } {
 }
@@ -41,8 +45,6 @@ void GLWidget::paintGL() {
 
     // Bind buffers.
     vao->bind();
-    vertexBuffer->bind();
-    indexBuffer->bind();
 
     // Clear default render buffer.
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -59,26 +61,11 @@ void GLWidget::paintGL() {
     shader->setUniformValue("uMVMat", mvMat);
     shader->setUniformValue("uLightPos", QVector3D(10.0f, 20.0f, 30.0f));
 
-    // Set attribute arrays
-    shader->setAttributeBuffer("vPosition", GL_FLOAT, Vertex::posOffset(),    3, sizeof(Vertex));
-    shader->setAttributeBuffer("vNormal",   GL_FLOAT, Vertex::normalOffset(), 3, sizeof(Vertex));
-    shader->setAttributeBuffer("vColor",    GL_FLOAT, Vertex::colorOffset(),  4, sizeof(Vertex));
-
-    shader->enableAttributeArray("vPosition");
-    shader->enableAttributeArray("vNormal");
-    shader->enableAttributeArray("vColor");
-
     // Draw
     glDrawElements(GL_TRIANGLES, indexBuffer->size() / sizeof(unsigned int), GL_UNSIGNED_INT, 0);
 
-    shader->disableAttributeArray("vPosition");
-    shader->disableAttributeArray("vNormal");
-    shader->disableAttributeArray("vColor");
-
     // Unbind buffers.
     vao->release();
-    vertexBuffer->release();
-    indexBuffer->release();
 
     // Disable shader.
     shader->release();
@@ -151,6 +138,8 @@ void GLWidget::loadMesh(const std::string& filename) {
     printf("   Faces: %zu\n", indices.size());
 
     // Initialize VBO
+    shader->bind();
+
     vao = std::make_unique<QOpenGLVertexArrayObject>(this);
     vao->create();
     vao->bind();
@@ -160,14 +149,21 @@ void GLWidget::loadMesh(const std::string& filename) {
     vertexBuffer->setUsagePattern(QOpenGLBuffer::StaticDraw);
     vertexBuffer->bind();
     vertexBuffer->allocate(&vertices[0], vertices.size() * sizeof(Vertex));
-    vertexBuffer->release();
-    
+
+    shader->enableAttributeArray(SHADER_POSITION_LOCATION);
+    shader->enableAttributeArray(SHADER_NORMAL_LOCATION);
+    shader->enableAttributeArray(SHADER_COLOR_LOCATION);
+
+    shader->setAttributeBuffer(SHADER_POSITION_LOCATION, GL_FLOAT, Vertex::posOffset(),    3, sizeof(Vertex));
+    shader->setAttributeBuffer(SHADER_NORMAL_LOCATION,   GL_FLOAT, Vertex::normalOffset(), 3, sizeof(Vertex));
+    shader->setAttributeBuffer(SHADER_COLOR_LOCATION,    GL_FLOAT, Vertex::colorOffset(),  4, sizeof(Vertex));
+
     indexBuffer = std::make_unique<QOpenGLBuffer>(QOpenGLBuffer::IndexBuffer);
     indexBuffer->create();
     indexBuffer->setUsagePattern(QOpenGLBuffer::StaticDraw);
     indexBuffer->bind();
     indexBuffer->allocate(&indices[0], indices.size() * sizeof(unsigned int));
-    indexBuffer->release();
 
     vao->release();
+    shader->release();
 }
