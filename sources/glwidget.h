@@ -9,6 +9,8 @@
 #include <vector>
 
 #include <QtWidgets/qopenglwidget.h>
+#include <QtGui/qopenglfunctions.h>
+#include <QtGui/qopenglextrafunctions.h>
 #include <QtGui/qopenglshaderprogram.h>
 #include <QtGui/qopenglvertexarrayobject.h>
 #include <QtGui/qopenglbuffer.h>
@@ -23,7 +25,7 @@ struct Vertex {
     static int colorOffset()  { return sizeof(QVector3D) * 2; }
 };
 
-class GLWidget : public QOpenGLWidget {
+class GLWidget : public QOpenGLWidget, private QOpenGLFunctions {
     Q_OBJECT
 public:
     explicit GLWidget(QWidget* parent = nullptr);

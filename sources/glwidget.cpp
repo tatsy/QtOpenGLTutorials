@@ -19,6 +19,9 @@ GLWidget::~GLWidget() {
 }
 
 void GLWidget::initializeGL() {
+    // Initialize OpenGL functions.
+    initializeOpenGLFunctions();
+
     // Default OpenGL setting.
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -138,8 +141,6 @@ void GLWidget::loadMesh(const std::string& filename) {
     printf("   Faces: %zu\n", indices.size());
 
     // Initialize VBO
-    shader->bind();
-
     vao = std::make_unique<QOpenGLVertexArrayObject>(this);
     vao->create();
     vao->bind();
@@ -150,13 +151,14 @@ void GLWidget::loadMesh(const std::string& filename) {
     vertexBuffer->bind();
     vertexBuffer->allocate(&vertices[0], vertices.size() * sizeof(Vertex));
 
-    shader->enableAttributeArray(SHADER_POSITION_LOCATION);
-    shader->enableAttributeArray(SHADER_NORMAL_LOCATION);
-    shader->enableAttributeArray(SHADER_COLOR_LOCATION);
+    auto f = QOpenGLContext::currentContext()->extraFunctions();
+    f->glEnableVertexAttribArray(SHADER_POSITION_LOCATION);
+    f->glEnableVertexAttribArray(SHADER_NORMAL_LOCATION);
+    f->glEnableVertexAttribArray(SHADER_COLOR_LOCATION);
 
-    shader->setAttributeBuffer(SHADER_POSITION_LOCATION, GL_FLOAT, Vertex::posOffset(),    3, sizeof(Vertex));
-    shader->setAttributeBuffer(SHADER_NORMAL_LOCATION,   GL_FLOAT, Vertex::normalOffset(), 3, sizeof(Vertex));
-    shader->setAttributeBuffer(SHADER_COLOR_LOCATION,    GL_FLOAT, Vertex::colorOffset(),  4, sizeof(Vertex));
+    glVertexAttribPointer(SHADER_POSITION_LOCATION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)Vertex::posOffset());
+    glVertexAttribPointer(SHADER_NORMAL_LOCATION,   3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)Vertex::normalOffset());
+    glVertexAttribPointer(SHADER_COLOR_LOCATION,    4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)Vertex::colorOffset());
 
     indexBuffer = std::make_unique<QOpenGLBuffer>(QOpenGLBuffer::IndexBuffer);
     indexBuffer->create();
