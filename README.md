@@ -1,4 +1,4 @@
-QOpenGL Sample
+Qt and OpenGL Tutorials
 ===
 
-Sample project for Qt OpenGL program.
+Tutorials for OpenGL programming with Qt 5.x.
