@@ -1,10 +1,12 @@
 #include "oglwidget.h"
+#include "common.h"
 
 OGLWidget::OGLWidget(QWidget *parent)
     : QOpenGLWidget(parent) {
 }
 
 OGLWidget::~OGLWidget() {
+    grabFramebuffer().save(QString(SOURCE_DIRECTORY) + "result.jpg");
 }
 
 void OGLWidget::initializeGL() {

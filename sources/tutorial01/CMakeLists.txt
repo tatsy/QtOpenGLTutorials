@@ -3,7 +3,10 @@ set(BUILD_TARGET "Tutorial01")
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(SOURCES
+configure_file("${CMAKE_CURRENT_LIST_DIR}/common.h.in"
+               "${CMAKE_CURRENT_LIST_DIR}/common.h" @ONLY)
+
+set(SOURCES common.h
     main.cpp oglwidget.cpp oglwidget.h)
 
 add_executable(${BUILD_TARGET} ${SOURCES})

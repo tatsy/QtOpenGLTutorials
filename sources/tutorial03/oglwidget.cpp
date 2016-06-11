@@ -31,6 +31,7 @@ OGLWidget::OGLWidget(QWidget *parent)
 }
 
 OGLWidget::~OGLWidget() {
+    grabFramebuffer().save(QString(SOURCE_DIRECTORY) + "result.jpg");
 }
 
 void OGLWidget::initializeGL() {
