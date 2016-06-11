@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 
             var data = {};
             data.repodir = "https://github.com/tatsy/QtOpenGLTutorials/tree/master";
-            data.reporaw = "https://raw.githubusercontent.com/tatsy/QtOpenGLTutorials/master/";
+            data.reporaw = "https://raw.githubusercontent.com/tatsy/QtOpenGLTutorials/master";
             data.list = files;
             return data;
           }
