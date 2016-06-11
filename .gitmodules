@@ -1,0 +1,4 @@
+[submodule "reference"]
+	path = reference
+	url = https://github.com/tatsy/QtOpenGLTutorials.git
+	branch = gh-pages
