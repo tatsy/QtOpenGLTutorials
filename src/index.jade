@@ -1,5 +1,24 @@
 extends ../layouts/default
 
 block content
-  h1
-    | Qt OpenGL Tutorials
+  .container
+    .demo-headline
+      h1.demo-logo
+        .logo FlatUI
+        small Free User Interface Kit
+    .row.demo-row
+      nav.navbar.navbar-inverse.navbar-embossed(role="navibation")
+        .navbar-header
+          button.navbar-toggle(type="button", data-toggle="collapse", data-target="#inpage-links")
+            span.sr-only Toggle navigation
+          a.navbar-brand(href="#") Qt OpenGL
+        .collapse.navbar-collapse#navbar-collapse-01
+          ul.nav.navbar-nav.navbar-left
+            li
+              a.dropdown-toggle(href="#", data-toggle="dropdown") Messages
+                b.caret
+              span.dropdown-arrow
+              ul.dropdown-menu
+                li
+                  a(href="#") Action
+    

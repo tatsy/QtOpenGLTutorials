@@ -41,7 +41,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'bower_components/',
-            src: ['**/*.min.css'],
+            src: ['**/*.min.css', '**/demo.css'],
             dest: 'css',
             flatten: true
           },
