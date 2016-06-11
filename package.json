@@ -1,0 +1,33 @@
+{
+  "name": "QtOpenGLTutorials",
+  "version": "0.0.0",
+  "description": "Qt OpenGL Tutorial Reference",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "~1.0.1",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-contrib-jade": "~1.0.0",
+    "grunt-contrib-copy": "~1.0.0"
+  },
+  "devDependencies": {
+    "grunt-cli": "~1.2.0",
+    "bower": "~1.7.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tatsy/QtOpenGLTutorials.git"
+  },
+  "keywords": [
+    "Qt",
+    "OpenGL"
+  ],
+  "author": "tatsy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tatsy/QtOpenGLTutorials/issues"
+  },
+  "homepage": "https://tatsy.github.io/QtOpenGLTutorials"
+}

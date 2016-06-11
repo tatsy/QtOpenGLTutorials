@@ -1,0 +1,27 @@
+{
+  "name": "QtOpenGLTutorials",
+  "description": "Qt OpenGL Tutorial Reference",
+  "main": "Gruntfile.js",
+  "authors": [
+    "tatsy"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Qt",
+    "OpenGL"
+  ],
+  "homepage": "https://tatsy.github.io/QtOpenGLTutorials",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~3.0.0",
+    "bootstrap": "~3.3.6",
+    "flat-ui": "~2.3.0"
+  }
+}
