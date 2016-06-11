@@ -24,15 +24,25 @@ module.exports = function(grunt) {
         options: {
           pretty: true,
           data: function(dest, src) {
-            var rootdir = '../sources/'
+            var rootdir = "../sources/";
             var files = fs.readdirSync(rootdir).filter(function(file) {
               return fs.statSync(rootdir + file).isDirectory();
             });
 
+            var list = [];
+            for (var i = 0; i < files.length; i++) {
+              var content = fs.readFileSync(rootdir + files[i] + "/README.md", "utf-8");
+              var title = content.split('\n')[0];
+              var item = {};
+              item.dir = files[i];
+              item.title = title.trim();
+              list.push(item);
+            }
+
             var data = {};
             data.repodir = "https://github.com/tatsy/QtOpenGLTutorials/tree/master";
             data.reporaw = "https://raw.githubusercontent.com/tatsy/QtOpenGLTutorials/master";
-            data.list = files;
+            data.list = list;
             return data;
           }
         },

@@ -1,3 +1,18 @@
+/* User define */
+.tutorial.index {
+  font-size: 12pt;
+  padding: 0px;
+  margin: 0px;
+  text-align: right;
+}
+.tutorial.title {
+  font-size: 14pt;
+  padding: 0px;
+  margin: 0px;
+  text-align: right;
+  line-height: 12px;
+}
+
 /* Prettyfy Theme */
 .prettyprint {
   background-color: #F7F7F9;
