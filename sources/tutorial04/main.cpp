@@ -6,7 +6,7 @@ int main(int argc, char **argv) {
     QApplication app(argc, argv);
 
     OGLWidget widget;
-    widget.resize(500, 500);
+    widget.resize(800, 600);
     widget.show();
 
     return app.exec();

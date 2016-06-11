@@ -10,8 +10,8 @@ OGLWidget::~OGLWidget() {
 }
 
 void OGLWidget::initializeGL() {
-    // Set color to clear window (yellow).
-    glClearColor(1.0f, 1.0f, 0.0f, 1.0f);
+    // Set color to clear window (black).
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void OGLWidget::paintGL() {
