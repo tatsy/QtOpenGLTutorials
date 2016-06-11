@@ -10,8 +10,8 @@ block content
       .row.demo-row
         - for (var j = 0; j < 4 && i + j < list.length; j++) {  
           .col-xs-3
-            a(href="../sources")
-              img(src="../sources/#{list[i + j]}/result.jpg" width="200")
+            a(href="#{repodir}/sources/#{list[i + j]}")
+              img(src="#{repodir}/sources/#{list[i + j]}/result.jpg" width="200")
         - }
     - }
     

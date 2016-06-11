@@ -30,6 +30,7 @@ module.exports = function(grunt) {
             });
 
             var data = {};
+            data.repodir = "https://github.com/tatsy/QtOpenGLTutorials/tree/master";
             data.list = files;
             return data;
           }
