@@ -1,5 +1,6 @@
 'use strict';
 
+var fs   = require('fs');
 var path = require('path');
 
 module.exports = function(grunt) {
@@ -21,7 +22,17 @@ module.exports = function(grunt) {
     jade: {
       compile: {
         options: {
-          pretty: true
+          pretty: true,
+          data: function(dest, src) {
+            var rootdir = '../sources/'
+            var files = fs.readdirSync(rootdir).filter(function(file) {
+              return fs.statSync(rootdir + file).isDirectory();
+            });
+
+            var data = {};
+            data.list = files;
+            return data;
+          }
         },
         files: {
           "index.html": "src/index.jade"
@@ -41,7 +52,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'bower_components/',
-            src: ['**/*.min.css', '**/demo.css'],
+            src: ['**/*.min.css'],
             dest: 'css',
             flatten: true
           },
