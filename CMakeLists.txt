@@ -1,11 +1,17 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(QtOpenGLTutorials)
 
+set(CMAKE_CXX_STANDARD 14)
+
 if (MSVC)
   set(QT5_ROOT "QT5-NOT_FOUND" CACHE PATH "")
   if (EXISTS "${QT5_ROOT}/lib/Qt5Widgets.lib")
     set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "${QT5_ROOT}")
   endif()
+endif()
+
+if (APPLE)
+  set(CMAKE_OSX_DEPLOYMENT_TARGET "10.11" CACHE STRING "10.11")
 endif()
 
 find_package(Qt5Widgets REQUIRED)
@@ -20,9 +26,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
 add_subdirectory(sources)
 
 file(MAKE_DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
-set(QT_LIBRARY_LIST Qt5Widgets Qt5Widgetsd Qt5Core Qt5Cored Qt5Gui Qt5Guid
-                    Qt5OpenGL Qt5OpenGLd)
-foreach(LIB ${QT_LIBRARY_LIST})
-  file(COPY ${CMAKE_PREFIX_PATH}/bin/${LIB}.dll
-       DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-endforeach()
+
+if (WIN32)
+  set(QT_LIBRARY_LIST Qt5Widgets Qt5Widgetsd Qt5Core Qt5Cored Qt5Gui Qt5Guid
+                      Qt5OpenGL Qt5OpenGLd)
+  foreach(LIB ${QT_LIBRARY_LIST})
+    file(COPY ${CMAKE_PREFIX_PATH}/bin/${LIB}.dll
+         DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+  endforeach()
+endif()
