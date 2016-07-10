@@ -21,8 +21,6 @@ static constexpr int SHADER_TEXCOORD_LOC = 2;
 
 static constexpr int CUBE_POSITION_LOC = 0;
 
-static const QVector3D LIGHT_POS = QVector3D(-5.0f, 5.0f, 5.0f);
-
 static const float cubeVertices[8][3] = {
     { -128.0f, -128.0f, -128.0f },
     { -128.0f, -128.0f,  128.0f },
@@ -172,7 +170,7 @@ OGLWidget::OGLWidget(QWidget *parent)
 
     QMatrix4x4 mMat, vMat;
     mMat.setToIdentity();
-    vMat.lookAt(QVector3D(4.0f, 4.0f, 4.0f), QVector3D(0.0f, 0.0f, 0.0f), QVector3D(0.0f, 1.0f, 0.0f));
+    vMat.lookAt(QVector3D(4.0f, 5.0f, 6.0f), QVector3D(0.0f, 0.0f, 0.0f), QVector3D(0.0f, 1.0f, 0.0f));
     controller->initModelView(mMat, vMat);
 }
 
