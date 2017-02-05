@@ -3,12 +3,12 @@
 
 #include <QtWidgets/qopenglwidget.h>
 
-class OGLWidget : public QOpenGLWidget {
+class OpenGLWidget : public QOpenGLWidget {
     Q_OBJECT
 
 public:
-    OGLWidget(QWidget* parent = nullptr);
-    ~OGLWidget();
+    OpenGLWidget(QWidget* parent = nullptr);
+    ~OpenGLWidget();
 
 protected:
     void initializeGL() override;

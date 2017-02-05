@@ -1,24 +1,24 @@
-#include "oglwidget.h"
+#include "openglwidget.h"
 #include "common.h"
 
-OGLWidget::OGLWidget(QWidget *parent)
+OpenGLWidget::OpenGLWidget(QWidget *parent)
     : QOpenGLWidget(parent) {
 }
 
-OGLWidget::~OGLWidget() {
+OpenGLWidget::~OpenGLWidget() {
     grabFramebuffer().save(QString(SOURCE_DIRECTORY) + "result.jpg");
 }
 
-void OGLWidget::initializeGL() {
+void OpenGLWidget::initializeGL() {
     // Set color to clear window (black).
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
-void OGLWidget::paintGL() {
+void OpenGLWidget::paintGL() {
     // Clear window color.
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void OGLWidget::resizeGL(int w, int h) {
+void OpenGLWidget::resizeGL(int w, int h) {
     glViewport(0, 0, width(), height());
 }
