@@ -16,7 +16,7 @@ void main(void) {
     teseTexCoord[gl_InvocationID] = tescTexCoord[gl_InvocationID];
 
     gl_TessLevelInner[0] = 20.0;
-    gl_TessLevelOuter[0] = 10.0;
-    gl_TessLevelOuter[1] = 10.0;
-    gl_TessLevelOuter[2] = 10.0;
+    gl_TessLevelOuter[0] = 20.0;
+    gl_TessLevelOuter[1] = 20.0;
+    gl_TessLevelOuter[2] = 20.0;
 }

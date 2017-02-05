@@ -1,1 +1,1 @@
-Arcball control
+Displacement mapping
