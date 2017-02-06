@@ -1,0 +1,7 @@
+#ifndef _COMMON_H_
+#define _COMMON_H_
+
+static const char *SOURCE_DIRECTORY = "@TARGET_EXAMPLE_DIR@/";
+static const char *SHADER_DIRECTORY = "@TARGET_EXAMPLE_DIR@/shaders/";
+
+#endif  // _COMMON_H_

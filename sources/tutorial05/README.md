@@ -1,1 +1,0 @@
-Blinn Phong shading

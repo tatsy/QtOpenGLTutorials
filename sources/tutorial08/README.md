@@ -1,1 +1,0 @@
-Cube enviroment mapping

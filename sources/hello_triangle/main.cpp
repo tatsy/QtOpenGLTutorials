@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
 
     OpenGLWidget widget;
     widget.resize(800, 600);
-    widget.setWindowTitle("Open window");
+    widget.setWindowTitle("Hello shader");
     widget.show();
 
     return app.exec();

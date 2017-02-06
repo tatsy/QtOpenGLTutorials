@@ -1,8 +1,10 @@
 function(BUILD_EXAMPLE EXPNAME)
   set(TARGET_EXAMPLE_DIR "${CMAKE_CURRENT_LIST_DIR}/${EXPNAME}")
 
-  configure_file("${CMAKE_CURRENT_LIST_DIR}/${EXPNAME}/common.h.in"
-                 "${CMAKE_CURRENT_LIST_DIR}/${EXPNAME}/common.h" @ONLY)
+  if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/${EXPNAME}/common.h.in")
+    configure_file("${CMAKE_CURRENT_LIST_DIR}/${EXPNAME}/common.h.in"
+                   "${CMAKE_CURRENT_LIST_DIR}/${EXPNAME}/common.h" @ONLY)
+  endif()
 
   set(CMAKE_AUTOMOC ON)
   set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -21,6 +23,11 @@ function(BUILD_EXAMPLE EXPNAME)
   target_link_libraries(${EXPNAME} ${OPENGL_LIBRARIES} ${QT_LIBRARIES})
   source_group("Source Files" FILES ${SOURCE_FILES})
   source_group("Shader Files" FILES ${SHADER_FILES})
+
+  if (MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zi")
+    set_property(TARGET ${EXPNAME} APPEND PROPERTY LINK_FLAGS "/DEBUG /PROFILE")
+  endif()
 endfunction(BUILD_EXAMPLE)
 
 file(GLOB SUBDIR_LIST RELATIVE ${CMAKE_CURRENT_LIST_DIR} "*")
